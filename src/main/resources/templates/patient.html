@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Usuarios con Roles</title>
+</head>
+<body>
+    <h1>Lista de Usuarios con Roles</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Celular</th>
+                <th>Correo</th>
+                <th>DNI</th>
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario, iter : ${usuariosConRoles}">
+                <td th:text="${usuario[0]}"></td>
+                <td th:text="${usuario[1]}"></td>
+                <td th:text="${usuario[2]}"></td>
+                <td th:text="${usuario[3]}"></td>
+                <td th:text="${usuario[4]}"></td>
+                <td th:text="${usuario[5]}"></td>
+                <td th:text="${usuario[6]}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

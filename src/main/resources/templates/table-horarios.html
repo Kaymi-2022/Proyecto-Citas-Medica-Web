@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    // layout nav pagina de Tablero de Control admin
+    <nav th:replace="layout/menuTablero :: navTable"></nav>
+
+    <div id="layoutSidenav">
+        <div th:replace="layout/menuTablero :: menuTablero">Contenido menu Tablero</div>
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#editUserModal">AGREGAR
+                    </button>
+                    <br>
+                    <br>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            DataTable Control Horarios
+                        </div>
+                        <!--tabla con DataTables-->
+                        <div class="container" th:if="${horarios != null and !horarios.empty}">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="datatablesSimple" class="table table-striped table-bordered"
+                                            cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Dia</th>
+                                                    <th>Horario</th>
+                                                    <th>Estado</th>
+                                                    <th>Nombre Medico</th>
+                                                    <th>Editar</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="horario: ${horarios}">
+                                                    <td th:text="${horario.id}"></td>
+                                                    <td th:text="${horario.dia}"></td>
+                                                    <td th:text="${horario.time}"></td>
+                                                    <td th:text="${horario.idestadoCita.estado}"></td>
+                                                    <td th:text="${horario.medicos.nombre}"></td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#editUserModal" th:attr="
+                                                            data-id=${horario.id},
+                                                            data-dia=${horario.dia},
+                                                            data-time=${horario.time},
+                                                            data-idestadoCita=${horario.idestadoCita.idestadoCita},
+                                                            data-idMedico=${horario.medicos.idMedico}">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a th:href="@{/eliminarHorario(id=${horario.id})}" type="button"
+                                                            class="btn btn-danger">
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal para editar usuario -->
+                        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Editar Horario</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form th:action="@{/admin/guardarHorario}" th:object="${horario}" method="post"
+                                              class="was-validated">
+                                            <input type="hidden" id="id" name="id" required />
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="dia" class="form-label">Dia</label>
+                                                    <input type="date" class="form-control" id="dia" name="dia"
+                                                           required />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="time" class="form-label">Hora</label>
+                                                    <input type="time" class="form-control" id="time" name="time"
+                                                           required />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label for="idestadoCita">Estado Cita:</label>
+                                                    <select class="form-control" id="idestadoCita" name="idestadoCita"
+                                                            required>
+                                                        <option th:each="estadoCita : ${estadosCita}"
+                                                                th:value="${estadoCita.idestadoCita}"
+                                                                th:text="${estadoCita.estado}"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="medicos">Medico</label>
+                                                    <select class="form-control" id="medicos" name="medicos" required>
+                                                        <option th:each="medico : ${medicos}"
+                                                                th:value="${medico.idMedico}" th:text="${medico.nombre}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2024</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/js/llenardatos-horarios.js"></script>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="popper/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- datatables JS -->
+    <script type="text/javascript" src="/datatables/datatables.min.js"></script>
+    <!-- para usar botones en datatables JS -->
+    <script src="/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="/datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+    <script src="/js/datatables-simple-demo.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var resp = /*[[${mensaje}]]*/ "defaultValue";
+        console.log("Valor desde Thymeleaf:", resp);
+        /*]]>*/
+        if (resp === "error") {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Transacción no se pudo realizar!",
+            });
+        } else if (resp === "success") {
+            Swal.fire({
+                icon: "success",
+                title: "Correcto!",
+                text: "Transacción exitosa!",
+            });
+        } else if (resp === "") {
+            // No hay mensaje, no hacer nada
+        } else if (resp) {
+            Swal.fire({
+                icon: "info",
+                title: "Información",
+                text: resp,
+            });
+        }
+    </script>
+</body>
+
+</html>

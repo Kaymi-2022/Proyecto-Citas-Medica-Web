@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Hospital Lius Negreiros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    // layout nav pagina de Tablero de Control admin
+    <nav th:replace="layout/menuTablero :: navTable"></nav>
+    <div id="layoutSidenav">
+        <div th:replace="layout/menuTablero :: menuTablero">
+            Contenido menu Tablero
+        </div>
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4 d-flex justify-content-center">
+                        Tablero de Control de Especialidades
+                    </h1>
+                    <div th:if="${success}" class="alert alert-success" role="alert">
+                        <span th:text="${success}"></span>
+                    </div>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#editUserModal">
+                        AGREGAR
+                    </button>
+                    <br />
+                    <br />
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            DataTable Control Usuarios
+                        </div>
+                        <div class="container" th:if="${consultorios != null and !consultorios.empty}">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table id="datatablesSimple" class="table table-striped table-bordered"
+                                            cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nombre</th>
+                                                    <th>Foto</th>
+                                                    <th>Editar</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="especialidad : ${consultorios}">
+                                                    <td th:text="${especialidad.idConsultorio}"></td>
+                                                    <td th:text="${especialidad.nombre}"></td>
+                                                    <td>
+                                                        <img th:src="@{'/uploads/' + ${especialidad.foto}}" width="80px"
+                                                            height="80px" alt="${especialidad.foto}" />
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#editUserModal" th:attr="
+                                                            data-id=${especialidad.idConsultorio},
+                                                            data-username=${especialidad.nombre}">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a th:href="@{/eliminarConsultorio(idConsultorio=${especialidad.idConsultorio})}"
+                                                            type="button" class="btn btn-danger">
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal para editar usuario -->
+                        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5>Editar Usuario</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form th:action="@{/guardarConsultorio}" th:object="${especialidad}"
+                                            method="post" enctype="multipart/form-data">
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" class="form-control" id="idConsultorio"
+                                                        name="idConsultorio" />
+                                                    <label for="nombre" class="form-label">Username</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre"
+                                                        required />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label for="file" class="form-label">Nombre</label>
+                                                    <input type="file" class="form-control" id="file" name="file"
+                                                        accept="image/*" required />
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">
+                                                Guardar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2024</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="js/llenardatos-consultorio.js"></script>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="popper/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- datatables JS -->
+    <script type="text/javascript" src="/datatables/datatables.min.js"></script>
+    <!-- para usar botones en datatables JS -->
+    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+    <script src="js/llenardatos-medico.js"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var resp = /*[[${mensaje}]]*/ "defaultValue";
+        console.log("Valor desde Thymeleaf:", resp);
+        /*]]>*/
+        if (resp) {
+            if (resp == "error") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Transaccion no se pudo realizar!",
+                });
+            } else if (resp == "success") {
+                Swal.fire({
+                    icon: "success",
+                    title: "Correcto!",
+                    text: "Transaccion exitosa!",
+                });
+            } else if (resp != null) {
+                Swal.fire({
+                    icon: "info",
+                    title: "Informacion",
+                    text: resp,
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

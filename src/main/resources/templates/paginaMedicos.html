@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/plantilla_medicos.css">
+</head>
+<body>
+    <header th:replace="layout/plantilla :: header">Header Content</header>
+
+
+<section>
+    <div class="container">
+        <h2>Consultorio: <span th:text="${nombreConsultorio}">NombreUsuario</span></h2>
+        <h2 class="text-center mt-5">Médicos Disponibles</h2>
+        <br>
+        <br>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 d-flex justify-content-center">
+            <div class="col" th:each="medico: ${medicos}">
+                <form action="/user/obtenerHorariosCalendario" th:object="${medico}" method="get" class="was-validated">
+                    <input type="hidden" name="consultorio" th:value="${nombreConsultorio}"/>
+                    <input type="hidden" name="idMedico" th:value="${medico.idMedico}"/>
+                    <input type="hidden" name="nombre" th:value="${medico.nombre}"/>
+                    <input type="hidden" name="foto" th:value="${medico.especialidad.nombre}"/>
+                    <input type="hidden" name="foto" th:value="${medico.foto}"/>
+                    <button type="submit" class="card-img-button border-0 bg-transparent">
+                        <div class="card">
+                            <img th:src="@{'/uploads/' + ${medico.foto}}" class="card-img-top"
+                                 alt="${especialidad.foto}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${medico.nombre}">Nombre del Consultorio</h5>
+                            </div>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="~{layout/plantilla :: footer}">Footer Content</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

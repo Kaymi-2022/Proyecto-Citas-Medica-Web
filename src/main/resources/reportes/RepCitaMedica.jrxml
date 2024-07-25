@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RepCitaMedica" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ecac7c32-d938-451d-808e-b301874b958a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="41"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="hora" class="java.lang.String"/>
+	<parameter name="medico" class="java.lang.String"/>
+	<parameter name="consultorio" class="java.lang.String"/>
+	<parameter name="nombreCompleto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="112" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="62fc6850-7bd2-473b-b455-87a6789902b7" x="163" y="45" width="200" height="44"/>
+				<textElement textAlignment="Center">
+					<font size="25"/>
+				</textElement>
+				<text><![CDATA[CITA MEDICA]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="2587f60c-f081-4f9e-9104-e00de4703fe1" x="42" y="20" width="96" height="78"/>
+				<imageExpression><![CDATA["C:\\Users\\USER\\Downloads\\ENFERMERA.jpeg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="76537296-d4ed-481b-9333-59b6991eb118" x="392" y="20" width="129" height="69"/>
+				<imageExpression><![CDATA["C:\\Users\\USER\\Downloads\\LOGO ESSALUD.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="18" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="241" splitType="Stretch">
+			<textField>
+				<reportElement uuid="eeee3af4-0bf0-4cec-9414-6e10f6b73e7d" x="298" y="105" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f54fb36a-01ac-483e-8c69-0cbab97b2d7e" x="298" y="194" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4366899a-bec3-4b6d-9537-cbc5cbd3c2a7" x="298" y="150" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="91920f84-652b-4975-a4ce-63e739d12e8e" x="121" y="27" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[PACIENTE :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2de8b1f-fb93-4f35-9c3e-ac0effc3fb5e" x="121" y="66" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[CONSULTORIO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e7e9b1c8-ba6a-43c8-b0c2-a1879ca06247" x="121" y="105" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[FECHA DE CITA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ac3e6f3-aca8-4ace-a423-a6543d7f4657" x="121" y="150" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[MEDICO : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="318d4252-007a-4268-980c-0ba26b2022fd" x="121" y="194" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[HORA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2e86cc4d-d80b-4d84-beba-9f47319534c5" x="298" y="66" width="125" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{consultorio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e6579035-10f3-4689-9423-eceacd74264f" x="298" y="27" width="155" height="20"/>
+				<textElement>
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreCompleto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="92" splitType="Stretch">
+			<image>
+				<reportElement uuid="81d8f3c1-7b6e-46a6-adf8-89cda3447c1f" x="351" y="0" width="130" height="80"/>
+				<imageExpression><![CDATA["C:\\Users\\USER\\Downloads\\sello.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

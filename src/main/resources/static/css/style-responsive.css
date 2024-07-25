@@ -1,0 +1,453 @@
+@media (max-width: 1280px){
+	.container{
+		width: 100%;
+		padding:0 25px;
+	}
+
+
+	.topbar{
+		padding: 8px;
+	}
+	.topbar h3{
+		font-size:11px;
+	}
+
+
+	header{
+		padding: 55px 0 20px 0;
+	}
+	header .logo img{
+		width: 180px; height: auto;
+	}
+
+
+	header ul.contact{
+		float: right;
+		margin-top: 5px;
+	}
+	header ul.contact li{
+		font-size: 13px;
+		margin-left: 20px; padding-left: 20px;
+	}
+
+
+
+	.dental_services{
+		padding: 30px 0;
+	}
+	.service_items .item .thumb{
+		width: 100%;
+	}
+	.service_items .item .text{
+		width: 100%;
+		height: auto;
+		padding: 20px 30px;
+	}
+
+
+
+
+	.about{
+		padding-bottom: 40px;
+	}
+
+
+	.stats{
+		padding: 90px 0;
+	}
+
+
+	.reviews{
+		padding:70px 0 80px 0;
+	}
+	.reviewslider_wrap{
+		margin-top: 70px;
+	}
+
+
+	footer{
+		padding:60px 0;
+	}
+}
+
+
+@media (max-width: 1040px){
+	header{
+		position: fixed;
+		padding: 50px 0 15px 0;
+		background: blueviolet;
+		box-shadow:0 0 15px rgba(0,0,0,0.2);
+		-webkit-box-shadow:0 0 15px rgba(0,0,0,0.2);
+	}
+	header.fixed{
+		padding: 15px 0 15px 0;
+	}
+	header .logo{
+		float: left;
+		margin-top: 9px;
+	}
+	.menuicons{
+		display: block !important;
+		float: right;
+		margin: 0 0 0 0;
+		position: relative;
+		z-index: 12;
+	}
+	.menuicons a{
+		float: left;
+		width: 48px; height: 48px; line-height: 48px;
+		text-align:center;
+		color:#fff;
+		font-size:30px;
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.menuicons a:hover{
+	}
+	nav{
+		display: none;
+		position: fixed;
+		width: 100%; height: 100%;
+		background: rgba(0,0,0,0.8);
+		z-index: 10;
+		left: 0; right: 0;
+	}
+	nav{
+		display: none;
+		position: fixed;
+		width: 100%; height: 100%;
+		background: rgba(0,0,0,0.8);
+		z-index: 10;
+		left: 0; top: 0;
+		padding:100px 60px;
+		overflow-y: scroll;
+	}
+	nav ul{
+		float: none;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	nav ul li{
+		float: none;
+		list-style: none;
+		margin:10px 0;
+	}
+	nav ul li a{
+		font-size:16px;
+		font-weight: 300;
+		padding:10px 22px;
+		border-radius:30px;
+	}
+	.banner{
+		min-height: 900px;
+	}
+	.contact{
+		float:left;
+		width:100%;
+		padding:0 0 40px 0;
+	}
+	.contactinfo{
+		padding:40px 40px;
+	}
+	.contactinfo h2{
+		font-size:30px; line-height: 100%;
+		margin-bottom: 10px;
+	}
+	.contactinfo h3{
+		font-size:16px;
+	}
+	.contactinfo .infowrap{
+		margin-top: 40px;
+		justify-content: space-between;
+	}
+	.contactinfo .infowrap .info{
+		float: left;
+		width: 48%;
+		max-width: 48%;
+		margin: 10px 0;
+	}
+}
+
+
+
+@media (max-width: 840px){
+	.banner{
+		padding: 0 0 0 0;
+		min-height: inherit;
+	}
+	.bannercontent{
+		float:left;
+		width:100%;
+		height: auto;
+		position: relative;
+		padding-top: 160px;
+		padding-bottom: 90px;
+	}
+	.banner .bannertext{
+		width: 100%;
+	}
+	.banner .bannertext h2{
+		font-size: 40px; line-height: 120%;
+		margin: 0 0 0 0;
+	}
+	.banner .formwrap{
+		position: relative;
+		float: left;
+		width: 100%;
+		height: auto;
+		display: block;
+		align-items:inherit;
+		margin-top: 0;
+		background: blueviolet;
+	}
+	.banner .formarea{
+		float: left;
+		width: 100%;
+		padding: 40px 50px;
+	}
+	.banner .formarea h2{
+		font-size: 27px;
+		margin: 0 0 8px 0;
+	}
+	.banner .formarea h4{
+		font-size: 14px; 
+		margin: 0 0 20px 0;
+		padding-bottom: 20px;
+	}
+	.banner .formarea h4:after{
+		width:60px;
+		height:1px;
+		background: rgba(255,255,255,1);
+	}
+	.banner .formarea form label{
+		margin-bottom: 15px;
+	}
+	.banner .formarea form label input[type="text"],
+	.banner .formarea form label input[type="email"],
+	.banner .formarea form label input[type="tel"],
+	.banner .formarea form label textarea
+	{
+		height: 32px;
+	}
+	.banner .formarea form input[type="submit"]
+	{
+		height: 40px;
+		font-size: 15px;
+	}
+	.dental-cert-wrap {
+		float: left;
+	    position: relative;
+	    background: rgba(33,37,44,1);
+	}
+
+
+
+	.service_items {
+	    margin: 0 -10px;
+	}
+	.service_items .item {
+	    padding: 0 10px;
+	}
+	.service_items .item .itemcontent{
+		background: #eee;
+	}
+	.service_items .item .text {
+	    padding: 20px 20px;
+	}
+	.service_items .item h3 {
+	    font-size: 13px;
+	    padding-left: 25px;
+	}
+	.service_items .item p{
+		font-size: 11px;
+	}
+
+
+
+
+	.about .text{
+		width: 48%;
+	}
+	.about .text h4{
+		font-size:14px;
+		margin-bottom: 15px;
+	}
+	.about .text h3{
+		font-size:32px;
+		margin-bottom: 15px;
+	}
+	.about .text h5{
+		font-size:19px;
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+	}
+	.about .text p{
+		font-size:14px;
+		margin-bottom: 20px;
+	}
+
+
+	.stats .item img{
+		width: 60px;
+	}
+	.stats .item span.icon{
+		font-size: 45px;
+	}
+	.stats .item h4{
+		font-size: 36px;
+	}
+	.stats .item h5{
+		font-size: 18px;
+	}
+}
+
+
+
+
+
+
+
+@media(max-width:600px){
+	.reviews h2{
+		font-size: 36px;
+		margin-bottom: 10px
+	}
+	.reviewslider .item .itemcontent .textbox{
+	} 
+	.reviewslider .item .itemcontent .textbox h4{
+		font-size:16px;
+	}
+	.reviewslider .item .itemcontent .textbox p{
+		font-size:13px;
+		line-height: 130%;
+	}
+	.reviewslider .item .itemcontent .userbox h5{
+		font-size:16px;
+		margin-bottom: 10px;
+	}
+	.reviewslider .item .itemcontent .userbox .userpic{
+		width: 60px;
+		height: 60px;
+	}
+}
+
+
+
+@media(max-width:520px){
+	.topbar h3{
+		font-size:9px;
+	}
+
+
+	header{
+		padding: 50px 0 20px 0;
+	}
+	header .logo img{
+		float: none;
+		width: 180px; height: auto;
+		display: table;
+		margin: 0 auto 0 auto;
+	}
+	header ul.contact{
+		float: none;
+		display: table;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+
+
+	.bannercontent{
+		padding: 200px 0 120px 0;
+	}
+	.banner .bannertext h2{
+		font-size: 30px;
+	}
+	.banner .formarea{
+		padding: 40px 0;
+	}
+
+
+
+	.about .imagearea{
+		width: 100%;
+		max-width: 100%;
+	}
+	.about .text{
+		float: left;
+		width: 100%;
+		margin: 0 0 0 0;
+		padding-top: 35px;
+	}
+
+
+
+	.stats .item span.icon{
+		font-size: 30px;
+	}
+	.stats .item h4{
+		font-size: 24px;
+	}
+	.stats .item h5{
+		font-size: 12px;
+	}
+
+
+
+	.reviews {
+	    padding: 40px 0 50px 0;
+	}
+	footer .copyright{
+		font-size: 13px;
+	}
+	.socialmedia a{
+		font-size:16px;
+		margin-right: 7px;
+	}
+
+
+	.contactinfo .infowrap .info{
+		float: left;
+		width: 100%;
+		max-width: 100%;
+		margin: 10px 0;
+	}
+	.contactinfo .infowrap .info span{
+		font-size:21px;
+		margin-bottom: 15px;
+	}
+	.contactinfo h4{
+		font-size:16px;
+		margin-bottom: 10px;
+	}
+	.contactinfo p{
+		font-size:14px;
+		margin-bottom: 0;
+	}
+}
+
+
+
+@media(max-width: 400px){
+	.reviewslider .item .itemcontent .textbox{
+		min-height: inherit;
+	} 
+
+	footer .copyright{
+		float: left;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.socialmedia{
+		float: left;
+		width: 100%;
+		margin: 0 0 0 0;
+	}
+}

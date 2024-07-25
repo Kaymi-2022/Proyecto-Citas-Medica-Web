@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <title>Reservar Cita</title>
+</head>
+
+<body class="d-flex flex-column">
+    <!-- Header -->
+    <header th:replace="~{layout/plantilla :: header}">Header Content</header>
+    <main class="flex-grow-1 text-center">
+        <!--<h2 th:text="${doctor}"></h2>
+        <h2 th:text="${consultorio}"></h2>
+        <h2 th:text="${dia}"></h2>
+        <h2 th:text="${hora}"></h2>
+        <h2 th:text="${idmedico}"></h2>-->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Control Historial de Citas
+            </div>
+            <div class="container" th:if="${citas != null and !citas.empty}">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table id="datatablesSimple" class="table table-striped table-bordered" cellspacing="0"
+                                width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ID</th>
+                                        <th>FECHA</th>
+                                        <th>PACIENTE</th>
+                                        <th>CONSULTORIO</th>
+                                        <th>MEDICO</th>
+                                        <th>ACTIVIDAD</th>
+                                        <th>HORA</th>
+                                        <th>SITUACION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="citas, contador : ${citas}">
+                                        <td>[[${contador.count}]]</td>
+                                        <td>[[${citas.id}]]</td>
+                                        <td>[[${citas.fecha}]]</td>
+                                        <td>[[${citas.paciente}]]</td>
+                                        <td>[[${citas.consultorio}]]</td>
+                                        <td>[[${citas.medico}]]</td>
+                                        <td>[[${citas.actividad}]]</td>
+                                        <td>[[${citas.hora}]]</td>
+                                        <td>[[${citas.situacion}]]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}">Footer Content</footer>
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="popper/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- datatables JS -->
+    <script type="text/javascript" src="/datatables/datatables.min.js"></script>
+
+    <!-- para usar botones en datatables JS -->
+    <script src="/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="/datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+    <script src="/js/llenardatos-medico.js"></script>
+    <script src="/js/datatables-simple-demo.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var resp = /*[[${mensaje}]]*/ "defaultValue";
+        console.log("Valor desde Thymeleaf:", resp);
+        /*]]>*/
+        if (resp) {
+            if (resp == "error") {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Transaccion no se pudo realizar!",
+                });
+            } else if (resp == "success") {
+                Swal.fire({
+                    icon: "success",
+                    title: "Correcto!",
+                    text: "Transaccion exitosa!",
+                });
+            } else {
+                Swal.fire({
+                    icon: "info",
+                    title: "Info",
+                    text: resp
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
